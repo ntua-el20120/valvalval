@@ -84,7 +84,7 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο nomod_nobackground_correctclass/plots
 
-GMM TRAINED WITH MAX IOU MATCHINGS  
+GMM TRAINED WITH MAX IOU MATCHINGS  (correct class matchings lead to empty dataset)
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
 | Layer 1   |                  |                |                              |                            |
