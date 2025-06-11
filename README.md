@@ -87,12 +87,12 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 GMM TRAINED WITH MAX IOU MATCHINGS  (correct class matchings lead to empty dataset)
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
-| Layer 1   |                  |                |                              |                            |
-| Layer 2   |                  |                |                              |                            |
-| Layer 3   |                  |                |                              |                            |
-| Layer 4   |                  |                |                              |                            |
-| Layer 5   |                  |                |                              |                            |
-| Layer 6   |                  |                |                              |                            |
+| Layer 1   | 0.703            | 0.699*         | 0.694                             | 0.687                           |
+| Layer 2   | 0.661            | 0.710*         | 0.650                             | 0.706                           |
+| Layer 3   | 0.661            | 0.778          | 0.646                             | 0.766                           |
+| Layer 4   | 0.689            | 0.753*         | 0.673                             | 0.735                           |
+| Layer 5   | 0.667            | 0.747*         | 0.640                             | 0.748                           |
+| Layer 6   | 0.765            | 0.616*         | 0.752                             | 0.609                           |
 
 Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
 
@@ -101,9 +101,9 @@ Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (
 GMM PER CLASS WITH MAX IOU MATCHINGS (layer and function from best temperature scaled score from above table: Layer 3 function entropy)
 | Num Gaussians Per Class | Temp-Scaled AUROC |
 |-------------------------|--------------------|
-| 2                     |              |
-| 3                     |              |
-| 4                     |              |
+| 2                     | 0.610             |
+| 3                     | 0.630             |
+| 4                     | 0.553             |
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο nomod_nobackground_correctclass_train-no-matcher/plots
 
@@ -126,12 +126,12 @@ RTDETR LOGITS
 GMM TRAINED WITH HUNGARIAN MATCHER
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
-| Layer 1   | 0.686                  | 0.636*               | 0.679                             | 0.651                           |
-| Layer 2   | 0.678                 | 0.654*               | 0.673                             | 0.665                           |
-| Layer 3   | 0.669                 | 0.648*               | 0.665                             | 0.667                           |
-| Layer 4   | 0.684                 | 0.639*               | 0.682                             | 0.673                           |
-| Layer 5   | 0.681                 | 0.623*               | 0.674                             | 0.674                           |
-| Layer 6   | 0.699                 | 0.611*               | 0.696                             | 0.667                           |
+| Layer 1   | 0.686            | 0.636*         | 0.679                        | 0.651                      |
+| Layer 2   | 0.678            | 0.654*         | 0.673                        | 0.665                      |
+| Layer 3   | 0.669            | 0.648*         | 0.665                        | 0.667                      |
+| Layer 4   | 0.684            | 0.639*         | 0.682                        | 0.673                      |
+| Layer 5   | 0.681            | 0.623*         | 0.674                        | 0.674                      |
+| Layer 6   | 0.699            | 0.611*         | 0.696                        | 0.667                      |
 
 Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
 
@@ -149,12 +149,12 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 GMM TRAINED WITH MAX IOU MATCHINGS  
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
-| Layer 1   |                  |                |                              |                            |
-| Layer 2   |                  |                |                              |                            |
-| Layer 3   |                  |                |                              |                            |
-| Layer 4   |                  |                |                              |                            |
-| Layer 5   |                  |                |                              |                            |
-| Layer 6   |                  |                |                              |                            |
+| Layer 1   | 0.666            | 0.581          | 0.661                        | 0.544                      |
+| Layer 2   | 0.632            | 0.602          | 0.625                        | 0.571                      |
+| Layer 3   | 0.610            | 0.625          | 0.601                        | 0.590                      |
+| Layer 4   | 0.625            | 0.604*         | 0.617                        | 0.569                      |
+| Layer 5   | 0.606            | 0.623*         | 0.592                        | 0.598                      |
+| Layer 6   | 0.644            | 0.571*         | 0.635                        | 0.552                      |
 
 Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
 
@@ -163,9 +163,9 @@ Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (
 GMM PER CLASS WITH MAX IOU MATCHINGS (layer and function from best temperature scaled score from above table: Layer 3 function entropy)
 | Num Gaussians Per Class | Temp-Scaled AUROC |
 |-------------------------|--------------------|
-| 2                     |              |
-| 3                     |              |
-| 4                     |              |
+| 2                     | 0.644             |
+| 3                     | 0.621             |
+| 4                     | 0.638             |
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο nomod_nobackground_nocorrectclass_train-no-matcher/plots
 
@@ -220,9 +220,9 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 RTDETR LOGITS  
 | Method                  | AUROC           | Temp-Scaled AUROC |
 |-------------------------|------------------|--------------------|
-| Softmax                 |                  |                    |
-| Logsumexp (density)     |                  |                    |
-| Entropy (Energy)        |                  |                    |
+| Softmax                 | 0.747                 | 0.798                   |
+| Logsumexp (density)     | 0.604                 | 0.661                   |
+| Entropy (Energy)        | 0.713                 | 0.793                   |
 
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
@@ -232,24 +232,24 @@ GMM TRAINED WITH HUNGARIAN MATCHER
 Note: Training detections for the GMMs check correct class too
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
-| Layer 1   |                  |                |                              |                            |
-| Layer 2   |                  |                |                              |                            |
-| Layer 3   |                  |                |                              |                            |
-| Layer 4   |                  |                |                              |                            |
-| Layer 5   |                  |                |                              |                            |
-| Layer 6   |                  |                |                              |                            |
+| Layer 1   | 0.602            | 0.628*         | 0.596                       | 0.675                       |
+| Layer 2   | 0.615            | 0.645*         | 0.610                       | 0.696                       |
+| Layer 3   | 0.600            | 0.624*         | 0.596                       | 0.700                       |
+| Layer 4   | 0.613            | 0.606*         | 0.610                       | 0.715                       |
+| Layer 5   | 0.628            | 0.575*         | 0.625                       | 0.702                       |
+| Layer 6   | 0.667            | 0.571*         | 0.666                       | 0.707                       |
 
 
 Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table: )
+GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table: Layer 6 function entropy )
 | Num Gaussians Per Class | Temp-Scaled AUROC |
 |-------------------------|--------------------|
-| 2                       |                    |
-| 3                       |                    |
-| 4                       |                    |
+| 2                       | 0.720                   |
+| 3                       | 0.744                   |
+| 4                       | 0.763                   |
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
 
@@ -261,9 +261,9 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 RTDETR LOGITS  
 | Method                  | AUROC           | Temp-Scaled AUROC |
 |-------------------------|------------------|--------------------|
-| Softmax                 |                  |                    |
-| Logsumexp (density)     |                  |                    |
-| Entropy (Energy)        |                  |                    |
+| Softmax                 | 0.697            | 0.708              |
+| Logsumexp (density)     | 0.566            | 0.602              |
+| Entropy (Energy)        | 0.678            | 0.711              |
 
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
@@ -272,23 +272,23 @@ RTDETR LOGITS
 GMM TRAINED WITH HUNGARIAN MATCHER  
 | Layer     | Logsumexp AUROC | Entropy AUROC | Temp-Scaled Logsumexp AUROC | Temp-Scaled Entropy AUROC |
 |-----------|------------------|----------------|------------------------------|----------------------------|
-| Layer 1   |                  |                |                              |                            |
-| Layer 2   |                  |                |                              |                            |
-| Layer 3   |                  |                |                              |                            |
-| Layer 4   |                  |                |                              |                            |
-| Layer 5   |                  |                |                              |                            |
-| Layer 6   |                  |                |                              |                            |
+| Layer 1   | 0.576            | 0.596*         | 0.570                        | 0.605                      |
+| Layer 2   | 0.585            | 0.606*         | 0.581                        | 0.608                      |
+| Layer 3   | 0.568            | 0.591*         | 0.566                        | 0.607                      |
+| Layer 4   | 0.582            | 0.585*         | 0.580                        | 0.617                      |
+| Layer 5   | 0.593            | 0.551*         | 0.594                        | 0.595                      |
+| Layer 6   | 0.629            | 0.546*         | 0.632                        | 0.604                      |
 
 
 Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table: )
+GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table: Layer 6 function logsumexp )
 | Num Gaussians Per Class | Temp-Scaled AUROC |
 |-------------------------|--------------------|
-| 2                       |                    |
-| 3                       |                    |
-| 4                       |                    |
+| 2                       | 0.686              |
+| 3                       | 0.710              |
+| 4                       | 0.729              |
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
