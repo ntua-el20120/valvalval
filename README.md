@@ -46,6 +46,7 @@
 
 Δοκιμάζουμε διαφορετικούς συνδυασμούς των παραπάνω επιλογών και παρουσιάζουμε τα αποτελέσματα:
 
+Σε όλα τα παρακάτω θέτουμε αρχικό softmax threshold 0.2
 
 # Openset Detection methodology 
 Κάνουμε matching με το max iou και λαμβάνουμε τα detections 0 ως id / 2 ως ood / αγνοούμε 1,3
@@ -292,3 +293,6 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 | 4                       | 0.729              |
 
 Σημείωση: Τα διαγράμματα φαίνονται στον φάκελο 
+
+
+Αφαιρούμε το softmax threshold και ξανατρέχουμε τα openset correct και openset no correct class
