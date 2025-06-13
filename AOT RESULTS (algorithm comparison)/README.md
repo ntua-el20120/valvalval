@@ -1,15 +1,31 @@
-ALGORITHM COMPARISON FOR AUROC CALCULATION ON AOT
+# Algorithm Comparison for AUROC Calculation on AOT
 
-We check the auroc with 2 different definitions, the new one and the one used in the openset detection paper
-For both we check both the unmodified rtdetr and the one with sn
-For every one we check every algorithm with and without a pruning of Detections with softmax under 20%. 
-For the pruning we must always check the new mAP if it proves best.
+We evaluate AUROC using two definitions:
 
-AUROC DEFINITION 1: OPENSET DETECTION NO CLASS ID: 0,1 | OOD: 2 | IGNORED: 3 (CORRECT)
+- **Definition 1 (Correct):**  
+  - ID Classes: `0,1`  
+  - OOD Class: `2`  
+  - Ignored Class: `3`
 
-NO MOD MODEL
+- **Definition 2 (Incorrect):**  
+  - ID Class: `0`  
+  - OOD Class: `2`  
+  - Ignored Classes: `1,3`  
 
-RTDETR LOGITS  
+For each definition:
+- We evaluate **unmodified RT-DETR** and **RT-DETR with Spectral Normalization (SN)**
+- For each model, we compute AUROC:
+  - Without and with **temperature scaling**
+  - Without and with **pruning detections with Softmax < 20%**
+- When pruning improves results, we also report the **new mAP**
+
+---
+
+## 🔹 Definition 1 – Correct Class Mapping
+
+### ➤ No Mod (Original RT-DETR)
+
+#### RT-DETR Logits
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.080            | 0.080              | 0.875                | 0.842                         |
@@ -17,7 +33,7 @@ RTDETR LOGITS
 | Entropy (Energy)        | 0.310            | 0.310              | 0.927                | 0.939                         |
 
 
-
+### GMM per Layer
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.466             | 0.591*         | 0.913                         | 0.575*                      |
@@ -35,10 +51,10 @@ RTDETR LOGITS
 
 
 
-Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
+> Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.902              | 0.922                            |
@@ -47,13 +63,12 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 
 
 
+---
 
 
+### ➤ SN Mod (RT-DETR with Spectral Norm)
 
-
-SN MOD MODEL
-
-RTDETR LOGITS  
+#### RT-DETR Logits 
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.126            | 0.126              | 0.871                | 0.916                         |
@@ -61,7 +76,7 @@ RTDETR LOGITS
 | Entropy (Energy)        | 0.418            | 0.418              | 0.910                | 0.939                         |
 
 
-
+### GMM per Layer
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.413             | 0.631*         | 0.826                         | 0.741*                      |
@@ -79,10 +94,10 @@ RTDETR LOGITS
 
 
 
-Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
+> Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.854              | 0.925                            |
@@ -93,13 +108,14 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 
 
 
-AUROC DEFINITION 2: OPENSET DETECTION ID: 0 | OOD: 2 | IGNORED: 1,3 (WRONG)
+---
 
+## 🔹 Definition 2 – Incorrect Class Mapping
 
+### ➤ No Mod (Original RT-DETR)
 
-NO MOD MODEL
+#### RT-DETR Logits
 
-RTDETR LOGITS  
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.666            | 0.666              | 0.935                | 0.866                         |
@@ -107,7 +123,7 @@ RTDETR LOGITS
 | Entropy (Energy)        | 0.762            | 0.762              | 0.985                | 0.976                         |
 
 
-
+### GMM per Layer
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.799             | 0.714*         | 0.947                         | 0.582*                      |
@@ -125,10 +141,10 @@ RTDETR LOGITS
 
 
 
-Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
+> Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.964              | 0.964                            |
@@ -137,9 +153,11 @@ GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature s
 
 
 
-SN MOD MODEL
+---
 
-RTDETR LOGITS  
+### ➤ SN Mod (RT-DETR with Spectral Norm)
+
+#### RT-DETR Logits
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.573            | 0.573              | 0.976                | 0.950                         |
@@ -147,7 +165,7 @@ RTDETR LOGITS
 | Entropy (Energy)        | 0.725            | 0.725              | 0.988                | 0.987                         |
 
 
-
+### GMM per Layer
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.697             | 0.755*         | 0.910                         | 0.756*                      |
@@ -165,10 +183,10 @@ RTDETR LOGITS
 
 
 
-Results with asterisks had -Infinity as at least one of the tpr@osr thresholds (0.05, 0.1, 0.2) and thus can't be used in inference
+> Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-GMM PER CLASS WITH HUNGARIAN MATCHER (layer and function from best temperature scaled score from above table)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.901              | 0.987                            |
