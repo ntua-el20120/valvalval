@@ -25,7 +25,7 @@ For each definition:
 
 ### ➤ No Mod (Original RT-DETR)
 
-#### RT-DETR Logits
+#### RT-DETR Logits (mAP in parenthesis)
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.080            | 0.080              | 0.875                | 0.842                         |
@@ -33,7 +33,7 @@ For each definition:
 | Entropy (Energy)        | 0.310            | 0.310              | 0.927                | 0.939                         |
 
 
-### GMM per Layer
+### GMM per Layer (mAP in parenthesis)
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.466             | 0.591*         | 0.913                         | 0.575*                      |
@@ -54,7 +54,7 @@ For each definition:
 > Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above) (mAP in parenthesis)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.902              | 0.922                            |
@@ -63,12 +63,13 @@ For each definition:
 
 
 
+
 ---
 
 
 ### ➤ SN Mod (RT-DETR with Spectral Norm)
 
-#### RT-DETR Logits 
+#### RT-DETR Logits (mAP in parenthesis)
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.126            | 0.126              | 0.871                | 0.916                         |
@@ -76,7 +77,7 @@ For each definition:
 | Entropy (Energy)        | 0.418            | 0.418              | 0.910                | 0.939                         |
 
 
-### GMM per Layer
+### GMM per Layer (mAP in parenthesis)
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.413             | 0.631*         | 0.826                         | 0.741*                      |
@@ -97,7 +98,7 @@ For each definition:
 > Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above) (mAP in parenthesis)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.854              | 0.925                            |
@@ -112,9 +113,9 @@ For each definition:
 
 ## 🔹 Definition 2 – Incorrect Class Mapping
 
-### ➤ No Mod (Original RT-DETR)
+### ➤ No Mod (Original RT-DETR) 
 
-#### RT-DETR Logits
+#### RT-DETR Logits (mAP in parenthesis)
 
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
@@ -123,7 +124,7 @@ For each definition:
 | Entropy (Energy)        | 0.762            | 0.762              | 0.985                | 0.976                         |
 
 
-### GMM per Layer
+### GMM per Layer (mAP in parenthesis)
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.799             | 0.714*         | 0.947                         | 0.582*                      |
@@ -144,7 +145,7 @@ For each definition:
 > Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above) (mAP in parenthesis)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.964              | 0.964                            |
@@ -157,7 +158,7 @@ For each definition:
 
 ### ➤ SN Mod (RT-DETR with Spectral Norm)
 
-#### RT-DETR Logits
+#### RT-DETR Logits (mAP in parenthesis)
 | Method                  | AUROC           | Temp-Scaled AUROC | AUROC (Pruned <20) | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|------------------|--------------------|----------------------|-------------------------------|
 | Softmax                 | 0.573            | 0.573              | 0.976                | 0.950                         |
@@ -165,7 +166,7 @@ For each definition:
 | Entropy (Energy)        | 0.725            | 0.725              | 0.988                | 0.987                         |
 
 
-### GMM per Layer
+### GMM per Layer (mAP in parenthesis)
 | Layer                 | Logsumexp AUROC   | Entropy AUROC  | Logsumexp AUROC (Pruned <20)  | Entropy AUROC (Pruned <20)  |
 |-----------------------|-------------------|----------------|-------------------------------|-----------------------------|
 | Layer 1               | 0.697             | 0.755*         | 0.910                         | 0.756*                      |
@@ -186,7 +187,7 @@ For each definition:
 > Results marked with * had `-inf` at one or more TPR@OSR thresholds (0.05, 0.1, 0.2) and can't be used in inference.
 
 
-#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above)
+#### GMM PER CLASS WITH HUNGARIAN MATCHER (Best Layer + Metric from Above) (mAP in parenthesis)
 | Num Gaussians Per Class | Temp-Scaled AUROC | Temp-Scaled AUROC (Pruned <20) |
 |-------------------------|--------------------|----------------------------------|
 | 2                       | 0.901              | 0.987                            |
